@@ -32,5 +32,7 @@ then
     sleep 1
     ((WAIT--))
   done
+  kill -15 $pid
+  sleep 10
   kill -9 $pid
 fi

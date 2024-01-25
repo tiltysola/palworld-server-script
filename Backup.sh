@@ -48,3 +48,18 @@ echo "Backing up saves to ${DEST_PATH}/${DEST_FILENAME}"
 tar czf $DEST_PATH/$DEST_FILENAME -C "${SAVE_PATH}/../" Saved
 
 echo "Backup finished."
+
+echo "Start to clean up outdated backups..."
+
+LINE_POS=0
+ls $DEST_PATH -lt | awk '{print $9}' |
+while read -r LINE_TEXT
+do
+  if expr $LINE_POS \> 144 > /dev/null
+  then
+    rm -rf $DEST_PATH/$LINE_TEXT
+  fi
+  ((LINE_POS++))
+done
+
+echo "Outdated backups has been cleaned."
