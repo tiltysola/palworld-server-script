@@ -14,4 +14,4 @@ do
   ((WAIT--))
 done
 
-./PalServer.sh
+./PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS
